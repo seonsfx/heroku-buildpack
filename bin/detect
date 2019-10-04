@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Good to go sir!"
+exit 0
