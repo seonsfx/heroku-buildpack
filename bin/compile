@@ -2,4 +2,4 @@
 
 BUILDPACK_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
 
-sh $BUILDPACK_DIR/bin/signalfx-agent.sh --realm us0 $SFX_API_TOKEN
+sh $BUILDPACK_DIR/bin/signalfx-agent.sh --realm us0 $(cat "$3/SFX_API_TOKEN")
