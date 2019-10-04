@@ -84,6 +84,7 @@ parse_args_and_install() {
 
   echo "Ingest URL: $ingest_url"
   echo "API URL: $api_url"
+  echo "ACCESS TOKEN: $access_token"
 
   install "$stage" "$ingest_url" "$api_url" "$access_token" "$insecure" "$package_version" "$cluster"
   exit 0
