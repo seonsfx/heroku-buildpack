@@ -1,4 +1,4 @@
 #!/bin/sh
 
 curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-sudo sh /tmp/signalfx-agent.sh --realm $SFX_REALM $SFX_API_TOKEN
+sh /tmp/signalfx-agent.sh --realm $SFX_REALM $SFX_API_TOKEN
