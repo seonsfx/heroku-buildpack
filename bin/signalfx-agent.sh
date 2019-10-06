@@ -262,7 +262,8 @@ install_with_apt() {
   fi
 
   mkdir -p $cache_dir/app/state/lists/partial
-  apt-get -y -o debug::nolocking=true -o dir::cache=$cache_dir/app/cache -o dir::state=$cache_dir/app/state -o Dir::Etc::SourceList=$buildpack_dir/key/list.list update
+  APT_KEYRING="$CACHE_DIR/apt/trusted.gpg"
+  apt-get -y -o debug::nolocking=true -o Dir::Etc::Trusted=$APT_KEYRING -o dir::cache=$cache_dir/app/cache -o dir::state=$cache_dir/app/state -o Dir::Etc::SourceList=$buildpack_dir/key/list.list update
   apt-get -y install signalfx-agent${version_flag}
 }
 
