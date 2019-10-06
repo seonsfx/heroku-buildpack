@@ -261,7 +261,7 @@ install_with_apt() {
     version_flag="=${package_version}"
   fi
 
-  apt-get -y -o Dir::Etc::SourceList=$buildpack_dir/key/list.list update
+  apt-get -y -o dir::cache=$cache_dir/app/cache -o dir::state=$cache_dir/app/state -o Dir::Etc::SourceList=$buildpack_dir/key/list.list update
   apt-get -y install signalfx-agent${version_flag}
 }
 
