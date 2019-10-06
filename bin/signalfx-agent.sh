@@ -227,15 +227,17 @@ verify_access_token() {
 }
 
 download_debian_key() {
-  GPG_KEY_FILE="$buildpack_dir/signalfx.gpg"
+  GPG_KEY_FILE="$build_dir/key/signalfx.gpg"
   GPG_HOME_DIR="$build_dir/.gnupg"
 
+  mkdir -p "$build_dir/key"
   if ! download_file_to_stdout "$debian_gpg_key_url" > GPG_KEY_FILE; then
     echo "Could not get the SignalFx Debian GPG signing key" >&2
     exit 1
   fi
 
   echo "GPG_KEY_FILE $GPG_KEY_FILE created."
+  ls $build_dir/key
 
   mkdir -p "$GPG_HOME_DIR"
   gpg --ignore-time-conflict --no-options --homedir "$GPG_HOME_DIR" --import "$GPG_KEY_FILE"
