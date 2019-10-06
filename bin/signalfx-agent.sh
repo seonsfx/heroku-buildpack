@@ -11,10 +11,7 @@ rpm_repo_base="$repo_base/rpms/signalfx-agent"
 debian_gpg_key_url="$repo_base/debian.gpg"
 yum_gpg_key_url="$repo_base/yum-rpm.key"
 
-BUILD_DIR=$1
-CACHE_DIR=$2
-ENV_DIR=$3
-BUILDPACK_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
+buildpack_dir=$(cd "$(dirname "$0")"; cd ..; pwd)
 
 parse_args_and_install() {
   local stage="final"
@@ -56,6 +53,15 @@ parse_args_and_install() {
       --package-version)
         package_version="$2"
         shift 1
+        ;;
+      --build_dir)
+        build_dir="$2"
+        ;;
+      --cache_dir)
+        cache_dir="$2"
+        ;;
+      --env_dir)
+        env_dir="$2"
         ;;
       -h|--help)
         usage
@@ -211,8 +217,8 @@ verify_access_token() {
 }
 
 download_debian_key() {
-  GPG_KEY_FILE="$BUILDPACK_DIR/signalfx.gpg"
-  GPG_HOME_DIR="$BUILD_DIR/.gnupg"
+  GPG_KEY_FILE="$buildpack_dir/signalfx.gpg"
+  GPG_HOME_DIR="$build_dir/.gnupg"
 
   if ! download_file_to_stdout "$debian_gpg_key_url" > GPG_KEY_FILE; then
     echo "Could not get the SignalFx Debian GPG signing key" >&2
