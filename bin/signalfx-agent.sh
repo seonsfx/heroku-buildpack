@@ -237,7 +237,7 @@ download_debian_key() {
   fi
 
   echo "GPG_KEY_FILE $GPG_KEY_FILE created."
-  ls $build_dir/key
+  echo $(ls $build_dir/key)
 
   mkdir -p "$GPG_HOME_DIR"
   gpg --ignore-time-conflict --no-options --homedir "$GPG_HOME_DIR" --import "$GPG_KEY_FILE"
