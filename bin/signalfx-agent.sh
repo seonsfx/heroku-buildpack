@@ -236,7 +236,7 @@ download_debian_key() {
   fi
 
   mkdir -p "$GPG_HOME_DIR"
-  gpg --ignore-time-conflict --no-options --no-default-keyring --homedir "$GPG_HOME_DIR" --import "$GPG_KEY_FILE" | indent
+  gpg --ignore-time-conflict --no-options --no-default-keyring --homedir "$GPG_HOME_DIR" --import "$GPG_KEY_FILE"
 
   # chmod 644 /etc/apt/trusted.gpg.d/signalfx.gpg
 }
