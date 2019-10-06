@@ -388,8 +388,12 @@ install() {
       if [ "$stage" != "test" ]; then
         download_debian_key
       fi
-      install_debian_apt_source "$stage"
-      install_with_apt "$package_version"
+      # install_debian_apt_source "$stage"
+      # install_with_apt "$package_version"
+      sudo curl -sSL https://dl.signalfx.com/debian.gpg > /etc/apt/trusted.gpg.d/signalfx.gpg
+      sudo echo 'deb https://dl.signalfx.com/debs/signalfx-agent/final /' > /etc/apt/sources.list.d/signalfx-agent.list
+      sudo apt-get update
+      sudo apt-get install -y signalfx-agent
       ;;
     amzn|centos|rhel)
       install_yum_repo "$stage"
