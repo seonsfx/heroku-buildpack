@@ -261,7 +261,7 @@ install_with_apt() {
     version_flag="=${package_version}"
   fi
 
-  apt-get -y update
+  apt-get -y -o Dir::Etc::SourceList=$buildpack_dir/key/list.list update
   apt-get -y install signalfx-agent${version_flag}
 }
 
@@ -389,11 +389,7 @@ install() {
         download_debian_key
       fi
       # install_debian_apt_source "$stage"
-      # install_with_apt "$package_version"
-      # sudo curl -sSL https://dl.signalfx.com/debian.gpg > /etc/apt/trusted.gpg.d/signalfx.gpg
-      # sudo echo 'deb https://dl.signalfx.com/debs/signalfx-agent/final /' > /etc/apt/sources.list.d/signalfx-agent.list
-      apt-get update
-      apt-get install -y signalfx-agent
+      install_with_apt "$package_version"
       ;;
     amzn|centos|rhel)
       install_yum_repo "$stage"
