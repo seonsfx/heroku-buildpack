@@ -12,6 +12,9 @@ debian_gpg_key_url="$repo_base/debian.gpg"
 yum_gpg_key_url="$repo_base/yum-rpm.key"
 
 buildpack_dir=$(cd "$(dirname "$0")"; cd ..; pwd)
+build_dir=
+cache_dir=
+env_dir=
 
 parse_args_and_install() {
   local stage="final"
@@ -22,6 +25,7 @@ parse_args_and_install() {
   local access_token=
   local insecure=
   local package_version=
+  
 
   while [ -n "${1-}" ]; do
     case $1 in
