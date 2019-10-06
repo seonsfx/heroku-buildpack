@@ -8,4 +8,4 @@ BUILDPACK_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
 echo "--build_dir $BUILD_DIR --cache_dir $CACHE_DIR --env_dir $ENV_DIR"
 echo $(cat "$3/SFX_API_TOKEN")
 
-sh $BUILDPACK_DIR/bin/signalfx-agent.sh --realm us0 --build_dir $BUILD_DIR --cache_dir $CACHE_DIR $(cat "$3/SFX_API_TOKEN")
+sh $BUILDPACK_DIR/bin/signalfx-agent.sh --realm us0 --builddir $BUILD_DIR --cachedir $CACHE_DIR $(cat "$3/SFX_API_TOKEN")
