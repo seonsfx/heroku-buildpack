@@ -59,12 +59,15 @@ parse_args_and_install() {
         shift 1
         ;;
       --build_dir)
+        echo "set build dir"
         build_dir="$2"
         ;;
       --cache_dir)
+        echo "set cache dir"
         cache_dir="$2"
         ;;
       --env_dir)
+        echo "set env dir"
         env_dir="$2"
         ;;
       -h|--help)
